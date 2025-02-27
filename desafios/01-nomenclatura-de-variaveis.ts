@@ -1,6 +1,6 @@
 // Nomenclatura de variáveis
 
-const list = [
+const categoryListByFollowers = [
   {
     title: 'User',
     followers: 5
@@ -36,15 +36,15 @@ export default async function getData(req, res) {
     })
   }
 
-  const data = await response.json()
+  const githubData = await response.json()
 
-  const orderList = list.sort((a, b) =>  b.followers - a.followers); 
+  const orderListByFollowers = categoryListByFollowers.sort((a, b) =>  b.followers - a.followers); 
 
-  const category = orderList.find(i => data.followers > i.followers)
+  const categoryByFollowers = orderListByFollowers.find(i => githubData.followers > i.followers)
 
   const result = {
     github,
-    category: category.title
+    category: categoryByFollowers.title
   }
 
   return result
